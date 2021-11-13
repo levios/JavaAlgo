@@ -10,4 +10,10 @@ Commonly used tables are:
 * int[128] for ASCII
 * int[256] for Extended ASCII
 
+## Alphabet
+
+```
+char[] alphabet = "abcdefghijklmnopqrstuvwxyz".toCharArray();
+```
+
 <p align="right">(<a href="#top">back to top</a>)</p>
