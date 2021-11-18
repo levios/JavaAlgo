@@ -16,7 +16,7 @@ import java.util.*;
  *      1 <= nums.length <= 2 * 10^4
  *      1 <= nums[i], k <= nums.length
  */
-public class Subarrays_with_K_Different_Integers {
+public class Subarrays_with_K_Different_Integers_992 {
 
     public int subarraysWithKDistinct(int[] nums, int k) {
         return helper(nums, k) - helper(nums, k-1);
@@ -50,7 +50,7 @@ public class Subarrays_with_K_Different_Integers {
     }
 
     public static void main(String[] args) {
-        Subarrays_with_K_Different_Integers s = new Subarrays_with_K_Different_Integers();
+        Subarrays_with_K_Different_Integers_992 s = new Subarrays_with_K_Different_Integers_992();
 
         System.out.println(s.subarraysWithKDistinct(new int[] {1,2,1,2,3}, 2)); // Output: 7
         System.out.println(s.subarraysWithKDistinct(new int[] {1,2,1,3,4}, 3)); // Output: 3
