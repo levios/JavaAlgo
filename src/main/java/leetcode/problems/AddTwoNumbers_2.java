@@ -1,11 +1,11 @@
 package leetcode.problems;
 
-import java.util.List;
+import leetcode.problems.util.ListNode;
 
 /**
  * https://leetcode.com/problems/add-two-numbers/
  */
-public class AddTwoNumbers {
+public class AddTwoNumbers_2 {
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
         int sum, remainder = 0;
         ListNode first = null;
@@ -52,7 +52,7 @@ public class AddTwoNumbers {
         r1.next = r2;
         r2.next = r3;
 
-        AddTwoNumbers a = new AddTwoNumbers();
+        AddTwoNumbers_2 a = new AddTwoNumbers_2();
         System.out.println("[" + a.addTwoNumbers(l1,r1) + "]");
 
         ListNode l11 = new ListNode(2);
@@ -62,23 +62,5 @@ public class AddTwoNumbers {
         ListNode r11 = new ListNode(5);
 
         System.out.println("[" + a.addTwoNumbers(l11,r11) + "]");
-    }
-
-    static class ListNode {
-        int val;
-        ListNode next;
-        ListNode() { }
-        ListNode(int val) {
-            this.val = val;
-        }
-        ListNode(int val, ListNode next) {
-            this.val = val;
-            this.next = next;
-        }
-
-        @Override
-        public String toString() {
-            return val + (next != null ? ", " + next : "");
-        }
     }
 }

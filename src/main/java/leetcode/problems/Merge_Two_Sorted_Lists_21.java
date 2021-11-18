@@ -1,17 +1,9 @@
 package leetcode.problems;
 
+import leetcode.problems.util.ListNode;
+
 import java.util.List;
 
-/**
- * Definition for singly-linked list.
- * public class ListNode {
- *     int val;
- *     ListNode next;
- *     ListNode() {}
- *     ListNode(int val) { this.val = val; }
- *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
- * }
- */
 public class Merge_Two_Sorted_Lists_21 {
 
     public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
@@ -55,18 +47,6 @@ public class Merge_Two_Sorted_Lists_21 {
             root = root.next;
         }
         root.next = new ListNode(val);
-    }
-
-     static class ListNode {
-         int val;
-         ListNode next;
-         ListNode() {}
-         ListNode(int val) { this.val = val; }
-         ListNode(int val, ListNode next) { this.val = val; this.next = next; }
-         @Override
-         public String toString() {
-             return val + (next != null ? ", " + next : "");
-         }
     }
 
     public static void main(String[] args) {
