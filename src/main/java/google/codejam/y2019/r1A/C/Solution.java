@@ -96,35 +96,6 @@ public class Solution {
         return pairs;
     }
 
-    static void test(int n, Map<Integer, String> map) {
-        int[] arr = new int[n];
-        for (int i = 0; i < n; i++) {
-            arr[i] = i;
-        }
-        Permute pg = new Permute(arr);
-        int maxPairs = 0;
-        while (pg.hasMore()) {
-            int[] temp = pg.getNext();
-            List<T2<String, String>> tuples = new LinkedList<>();
-            for (int i = 0; i+1 < n; i+=2) {
-                tuples.add(new T2<String, String>(
-                        map.get(temp[i]),
-                        map.get(temp[i+1])
-                ));
-            }
-            int pairs = 0;
-            List<String> p1 = getPrefixes(tuples.get(0));
-            List<String> p2 = tuples.size() > 1 ? getPrefixes(tuples.get(1)) : new LinkedList<>();
-            List<String> p3 = tuples.size() > 2 ? getPrefixes(tuples.get(2)) : new LinkedList<>();
-
-            int i =0,j=0,k=0;
-            for (; i < p1.size(); i++) {
-
-            }
-
-        }
-    }
-
     private static List<String> getPrefixes(T2<String, String> t2) {
         String smaller = t2._1.length() > t2._2.length() ? t2._2 : t2._1;
         List<String> subs = new LinkedList<>();

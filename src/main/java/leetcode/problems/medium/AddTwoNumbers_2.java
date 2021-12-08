@@ -1,9 +1,10 @@
-package leetcode.problems;
+package leetcode.problems.medium;
 
 import leetcode.problems.util.ListNode;
 
 /**
  * https://leetcode.com/problems/add-two-numbers/
+ * 2. Add Two Numbers
  */
 public class AddTwoNumbers_2 {
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {

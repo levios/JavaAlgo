@@ -2,104 +2,65 @@ package combi;
 
 import java.util.*;
 
-/**
- * !!!! Input has to be sorted !!!!!
- * Permute(new int[]{1,2,3})
- * Output:
- * 1 2 3
- * 1 3 2
- * 2 1 3
- * 2 3 1
- * 3 1 2
- * 3 2 1
- */
-public class Permute {
-    private int[] array;
-    private boolean firstReady = false;
-
-    private int fact = 1;
-    private int counter = 0;
-
-    public Permute(int[] arr) {
-        if (arr.length < 1) {
-            throw new IllegalArgumentException("length < 1");
-        }
-        array = arr;
-
-        for(int i=1; i <= array.length; i++){
-            fact = fact * i;
+public class Permute<T> extends AbstractCollection<List<T>> {
+    private final List<T> items;
+    public Permute(List<T> s) {
+        items = s;
+    }
+    public Permute(T[] s) {
+        items = Arrays.asList(s.clone());
+    }
+    @Override
+    public Iterator<List<T>> iterator() {
+        if (items.size() == 1) {
+            return Collections.singleton(items).iterator();
+        } else {
+            return new PermutingIterator<>(items);
         }
     }
-    // TODO
-    public int[] getNext() {  return null; }
-    public int[] hasNext() {  return null; } // TODO
-    public boolean hasMore() {
-        return counter < fact;
+    @Override
+    public int size() {
+        return factorial(items.size());
     }
 
-    /**
-     * List permutations of an array.
-     *
-     * @param s the input string
-     * @return  the list of permutations
-     */
-    public static List<String> permutation(int[] s) {
-        // The result
-        List<int[]> res = new LinkedList<>();
-
-        if (s.length == 1) {
-            res.add(s);
-        } else if (s.length > 1) {
-            //TODO
-//            int lastIndex = s.length - 1;
-//            // Find out the last character
-//            int last = s[lastIndex];
-//            // Rest of the string
-//            int[] rest = s.substring(0, lastIndex);
-//            // Perform permutation on the rest string and
-//            // merge with the last character
-//            res = merge(permutation(rest), last);
+    private static class PermutingIterator<T> implements Iterator<List<T>> {
+        private final T last;
+        private final Iterator<List<T>> inner;
+        private List<T> current;
+        private int position;
+        PermutingIterator(List<T> s) {
+            int lastIndex = s.size() - 1;
+            this.inner = new Permute<T>(s.subList(0, lastIndex)).iterator();
+            this.last = s.get(lastIndex);
         }
-        return null; // TODO: res
-    }
-
-    /**
-     * @param list a result of permutation, e.g. {"ab", "ba"}
-     * @param c    the last character
-     * @return     a merged new list, e.g. {"cab", "acb" ... }
-     */
-    private static List<String> merge(List<String> list, String c) {
-        List<String> res = new LinkedList<>();
-        // Loop through all the string in the list
-        for (String s : list) {
-            // For each string, insert the last character to all possible positions
-            // and add them to the new list
-            for (int i = 0; i <= s.length(); ++i) {
-                String ps = new StringBuffer(s).insert(i, c).toString();
-                res.add(ps);
+        @Override
+        public boolean hasNext() {
+            return inner.hasNext() || (current != null && position <= current.size());
+        }
+        @Override
+        public List<T> next() {
+            while(true) {
+                if (current != null && position <= current.size()) {
+                    List<T> n = new ArrayList<>(current);
+                    n.add(position++, last);
+                    return n;
+                } else if (inner.hasNext()) {
+                    position = 0;
+                    current = inner.next();
+                } else {
+                    throw new IllegalStateException("no more permutations available");
+                }
             }
         }
-        return res;
+        @Override
+        public void remove() { throw new UnsupportedOperationException(); }
     }
 
-    // permutation algorithm recursively
-    public static <E> List<List<E>> permute(List<E> original) {
-        if (original.isEmpty()) {
-            List<List<E>> result = new ArrayList<>();
-            result.add(new ArrayList<>());
-            return result;
+    private static int factorial(int n) {
+        int fact = 1;
+        for (int i = 1; i <= n; i++) {
+            fact *= i;
         }
-        E firstElement = original.remove(0);
-        List<List<E>> returnValue = new ArrayList<>();
-        List<List<E>> permutations = permute(original);
-        for (List<E> smallerPermutated : permutations) {
-            for (int index = 0; index <= smallerPermutated.size(); index++) {
-                List<E> temp = new ArrayList<>(smallerPermutated);
-                temp.add(index, firstElement);
-                returnValue.add(temp);
-            }
-        }
-        return returnValue;
+        return fact;
     }
-
 }

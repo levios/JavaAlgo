@@ -1,9 +1,6 @@
-package algo;
+package hackerrank;
 
-import java.math.BigDecimal;
 import java.util.*;
-import java.util.concurrent.atomic.AtomicInteger;
-import java.util.stream.Collectors;
 
 public class Algo {
 

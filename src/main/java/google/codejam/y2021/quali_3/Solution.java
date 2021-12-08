@@ -39,7 +39,6 @@ public class Solution {
             print(result);
         } else {
             print(IMPOSSIBLE);
-            return;
         }
     }
 
@@ -48,9 +47,9 @@ public class Solution {
         for (int i = 0; i < n; i++) {
             a[i] = i + 1;
         }
-        Permute p = new Permute(a);
-        while (p.hasMore()) {
-            int[] array = p.getNext();
+        Permute<Integer> p = new Permute<>(Arrays.stream(a).boxed().collect(Collectors.toList()));
+        for (List<Integer> list : p) {
+            int[] array = list.stream().mapToInt(i->i).toArray();
             int count = algo(array);
             if (permutesByCost.containsKey(count)) {
                 permutesByCost.get(count).add(array);
