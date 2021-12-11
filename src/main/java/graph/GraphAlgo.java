@@ -171,7 +171,7 @@ public class GraphAlgo {
         int min = Integer.MAX_VALUE;
         int min_index = 0;
         for (int i = 0; i < spTree.length; i++) {
-            if (spTree[i] == false && distances[i] < min) {
+            if (!spTree[i] && distances[i] < min) {
                 min = distances[i];
                 min_index = i;
             }
