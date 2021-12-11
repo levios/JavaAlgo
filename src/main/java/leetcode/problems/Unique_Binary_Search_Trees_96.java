@@ -45,7 +45,7 @@ public class Unique_Binary_Search_Trees_96 {
     public int numTrees0(int n) {
         List<Integer> a = IntStream.range(1, n+1).boxed().collect(Collectors.toList());
         List<BinTree> trees = new LinkedList<>();
-        for (List<Integer> perm : Permute.<Integer>permute(a)) {
+        for (List<Integer> perm : new Permute<>(a)) {
             BinTree bt = BinTree.from(perm);
             boolean uniq = true;
             for (BinTree tree: trees) {

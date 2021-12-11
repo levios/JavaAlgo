@@ -1,7 +1,11 @@
 package combi;
 
+import leetcode.problems.medium.Permutations_46;
 import org.junit.*;
 import org.junit.Test;
+
+import java.util.Arrays;
+import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -9,15 +13,11 @@ public class PermuteTest {
 
     @Test
     public void test1() {
-        Permute pg = new Permute(new int[]{2, 3, 7, 9});
+        Permute<Integer> pg = new Permute<>(Arrays.asList(2, 3, 7, 9));
         int counter = 0;
-        while (pg.hasMore()) {
-            int[] temp =  pg.getNext();
-            for (int i = 0; i < temp.length; i++) {
-                System.out.print(temp[i] + " ");
-            }
+        for (List<Integer> s : pg) {
+            System.out.println(s);
             counter++;
-            System.out.println();
         }
         assertEquals(counter, 24);
     }
