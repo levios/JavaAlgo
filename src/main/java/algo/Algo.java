@@ -6,15 +6,6 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 public class Algo {
-
-    /**
-     * Implement GREP function
-     * function int[]/List grep(string haystack, string needle)
-     * haystack = "aaabcdddbjbjbdjbdjabcdefghi"
-     * needle = "abc"
-     * [2,14]
-     */
-
   static boolean isBalanced(String s) {
         if (s.length() % 2 == 1) return false;
         Deque<Character> q = new LinkedList<>();

@@ -5,6 +5,9 @@ import java.util.*;
 /**
  * https://leetcode.com/problems/combinations/
  * 77. Combinations
+ *
+ * Given two integers n and k, return all possible combinations of k numbers out of the range [1, n].
+ * https://leetcode.com/problems/permutations/discuss/18239/A-general-approach-to-backtracking-questions-in-Java-(Subsets-Permutations-Combination-Sum-Palindrome-Partioning)
  */
 class Combinations_77 {
 
@@ -40,9 +43,9 @@ class Combinations_77 {
             }
             return new LinkedList<>(Collections.singletonList(row));
         }
-        List<List<Integer>> result = this.combine(n - 1, k - 1);
+        List<List<Integer>> result = combine2(n - 1, k - 1);
         result.forEach(e -> e.add(n));
-        result.addAll(this.combine(n - 1, k));
+        result.addAll(combine2(n - 1, k));
         return result;
     }
 
