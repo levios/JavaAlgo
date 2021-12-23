@@ -4,9 +4,12 @@ import java.util.Arrays;
 
 /**
  * https://leetcode.com/problems/maximal-rectangle/discuss/29054/Share-my-DP-solution
+ * https://leetcode.com/problems/maximal-rectangle/
+ * 85. Maximal Rectangle
+ *
  * Tags: DP ; dynamic programmic
  */
-class Maximal_Rectangle_85 {
+public class Maximal_Rectangle_85 {
     public int maximalRectangle(char[][] matrix) {
         if (matrix == null || matrix.length == 0 || matrix[0] == null || matrix[0].length == 0) return 0;
         int m = matrix.length;

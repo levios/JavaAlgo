@@ -1,8 +1,6 @@
 package leetcode.problems.medium;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 /**
  * https://leetcode.com/problems/combination-sum/
@@ -55,5 +53,43 @@ class Combination_Sum_39 {
         Combination_Sum_39 c = new Combination_Sum_39();
         System.out.println(c.combinationSum(new int[]{2,3,6,7}, 7));
         System.out.println(c.combinationSum(new int[]{2,3,5}, 8));
+    }
+
+    /// iterative below
+
+    List<List<Integer>> combinationSumIterative(int[] candidates, int target) {
+        // sort candidates to try them in asc order
+        Arrays.sort(candidates);
+        // dp[t] stores all combinations that add up to t
+        List<List<Integer>>[] dp = new List[target+1];
+
+        // build up dp
+        for (int t=0; t<=target; t++) {
+            // initialize
+            dp[t] = new ArrayList<>();
+            // initialize
+            List<List<Integer>> combList = new ArrayList<>();
+
+            // for each t, find possible combinations
+            for (int j=0; j<candidates.length && candidates[j] <= t; j++) {
+                if (candidates[j] == t) {
+                    combList.add(Arrays.asList(candidates[j])); // itself can form a list
+                } else {
+                    for(List<Integer> prevlist: dp[t-candidates[j]]) { // here use our dp definition
+                        // i thought it makes more sense to compare with the last element
+                        // only add to list when the candidates[j] >= the last element
+                        // so the list remains ascending order, can prevent duplicate (ex. has [2 3 3], no [3 2 3])
+                        // equal is needed since we can choose the same element many times
+                        if(candidates[j] >= prevlist.get(prevlist.size()-1)){
+                            List<Integer> temp = new ArrayList<>(prevlist); // temp is needed since
+                            temp.add(candidates[j]); // cannot edit prevlist inside 4eeach looop
+                            combList.add(temp);
+                        }
+                    }
+                }
+            }
+            dp[t] = combList;
+        }
+        return dp[target];
     }
 }

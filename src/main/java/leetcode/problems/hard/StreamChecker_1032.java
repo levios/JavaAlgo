@@ -11,7 +11,7 @@ import java.util.HashMap;
  *
  * Tags: Trie
  */
-class StreamChecker {
+class StreamChecker_1032 {
     /**
      * Runtime: 202 ms, faster than 33.13%
      * Memory Usage: 68.7 MB, less than 95.75%
@@ -52,7 +52,7 @@ class StreamChecker {
         }
     }
 
-    public StreamChecker(String[] words) {
+    public StreamChecker_1032(String[] words) {
         for (String word : words) {
             root.add(word);
             maxSize = Math.max(maxSize, word.length());
@@ -72,14 +72,14 @@ class StreamChecker {
     }
 
     public static void main(String[] args) {
-        StreamChecker s = new StreamChecker(new String[]{"cd", "f", "kl"});
+        StreamChecker_1032 s = new StreamChecker_1032(new String[]{"cd", "f", "kl"});
 //        System.out.println(s.query('a')); // return False
 //        System.out.println(s.query('c')); // return False
 //        System.out.println(s.query('d')); // return True
 //        System.out.println(s.query('e')); // return False
 //        System.out.println(s.query('f')); // return True
 
-        s = new StreamChecker(new String[]{"ab","ba","aaab","abab","baa"});
+        s = new StreamChecker_1032(new String[]{"ab","ba","aaab","abab","baa"});
         System.out.println(s.query('a'));
         System.out.println(s.query('a'));
         System.out.println(s.query('a'));
