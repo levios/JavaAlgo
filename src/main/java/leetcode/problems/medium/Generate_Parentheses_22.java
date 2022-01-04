@@ -1,10 +1,11 @@
-package leetcode.problems;
+package leetcode.problems.medium;
 
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
 /**
+ * 22. Generate Parentheses
  * https://leetcode.com/problems/generate-parentheses/
  * >>> MEDIUM
  *
