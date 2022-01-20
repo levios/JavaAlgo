@@ -5,8 +5,9 @@ do
   stringarray=(${line})
   for word in "${stringarray[@]}"
   do
+    count=1
     # The following sed command will remove the trailing newline from the variable
-    word=$(echo "$word" | sed 's/\n$//g')
+    word=$(echo "$word" | sed 's/\n$//g')l
     # if word is not empty
     if [ -n "$word" ]
     then
