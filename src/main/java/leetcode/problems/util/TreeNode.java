@@ -39,4 +39,49 @@ public class TreeNode {
             return find(node.right, key);
         }
     }
+
+    public static TreeNode insertIntoBST(TreeNode root, int val) {
+        TreeNode newNode = new TreeNode(val);
+        if (root == null) {
+            return newNode;
+        }
+        TreeNode temp = root;
+        while (true) {
+            if (root.val < val) {
+                if (root.right == null) {
+                    temp.right = newNode;
+                    break;
+                }
+                root = root.right;
+            } else /* if val < root.val */ {
+                if (root.left == null) {
+                    temp.left = newNode;
+                    break;
+                }
+                root = root.left;
+            }
+        }
+        return temp;
+    }
+
+    public TreeNode insertIntoBST(int val) {
+        TreeNode newNode = new TreeNode(val);
+        TreeNode temp = this;
+        while (true) {
+            if (temp.val < val) {
+                if (temp.right == null) {
+                    temp.right = newNode;
+                    break;
+                }
+                temp = temp.right;
+            } else /* if val < root.val */ {
+                if (temp.left == null) {
+                    temp.left = newNode;
+                    break;
+                }
+                temp = temp.left;
+            }
+        }
+        return this;
+    }
 }

@@ -3,90 +3,60 @@ package google.codejam.y2021.quali_2;
 import java.io.*;
 import java.util.Scanner;
 
+/**
+ *
+ * Moons and Umbrellas (5pts, 11pts, 1pts)
+ * Each time CJ appears => must pay X.
+ * Each time JC appears => must pay Y.
+ * The empty spaces he still has could be filled strategically, to minimize the copyright expenses.
+ * For example, if CJ?CC? represents the current state.
+ * Given the costs X and Y and a string representing the current state, how much does he need
+ * to pay in copyrights if he finishes in a way that minimizes that cost?
+ *
+ * 1 <= the length of S <= 1000
+ * T2:
+ * 100 <= X <= 100
+ * 100 <= Y <= 100
+ * T3:
+ * −100 <= X <= 100
+ * −100 <= Y <= 100
+ *
+ */
 public class Solution {
     // TODO: changes this to  >>>  false
     static final boolean debug = true; // false | true
     ///////////////////////////////////////////
-    static final String FILENAME = "F:\\Documents\\GoogleCodeJam\\2021\\quali\\";
-    static final String IN = FILENAME + "sample.in";
-    static final String OUT = FILENAME + "out.out";
+    static final String FILENAME = "src/main/java/google/codejam/y2021/quali_2/";
+    static final String IN = FILENAME + "2.in";
+    static final String OUT = FILENAME + "2.out";
     ///////////////////////////////////////////
     static int X,Y;
-    static String S = null;
+
     private static void solve() {
-        X = in.nextInt();
-        Y = in.nextInt();
-        S = in.next();
+        X = in.nextInt(); // CJ
+        Y = in.nextInt(); // JC
+        String S = in.next();
+        int n = S.length();
 
-        String S2  = "";
-        while (true) {
-            S2 = S.replace("CC", "C")
-                    .replace("JJ", "J")
-                    .replace("??", "?")
-                    .replace("C?", "C")
-                    .replace("J?", "J")
-                    .replace("?C", "C")
-                    .replace("?J", "J");
-            if (S.length() == S2.length()) {
-                break;
-            }
-            S = S2;
-        }
+        int[][] dp = new int[n+1][2];
+        dp[0][0] = dp[0][1] = 0;
 
-
-//        StringBuilder sb = new StringBuilder(S.substring(0,1));
-//        // int j = 1;
-//        int i = 0;
-//        while(i < S.length() - 1) {
-//            if (S.charAt(i) == S.charAt(i + 1)) {
-//                // sb.append(S.charAt(i));
-//            } else {
-//                sb.append(S.charAt(i+1));
-//            }
-//            i++;
-//        }
-//        //print(sb.toString());
-//        S = sb.toString();
-//
-//        sb = new StringBuilder();
-//        i = 0;
-//        while(i < S.length() - 2) {
-//            String sub = S.substring(i, i+3);
-//            if (sub.equals("C?C") || sub.equals("?C?")) {
-//                sb.append("C");
-//                i += 2;
-//            } else if (sub.equals("J?J") || sub.equals("?J?")) {
-//                sb.append("J");
-//                i += 2;
-//            } else if (sub.equals("C?J")) {
-//                sb.append("CJ");
-//                i += 2;
-//            } else if (sub.equals("J?C")) {
-//                sb.append("JC");
-//                i += 2;
-//            } else if (i + 2 < S.length() - 1) {
-//                sb.append(S.charAt(i));
-//                i++;
-//            } else {
-//                sb.append(sub);
-//                i++;
-//            }
-//        }
-
-        //print(S2);
-        print("" + sum(S2));
-    }
-
-    static long sum(String s) {
-        long sum  = 0;
-        for (int i = 0; i < s.length() - 1; i++) {
-            if (s.substring(i,i+2).equals("CJ")) {
-                sum += X;
-            } else if (s.substring(i,i+2).equals("JC")) {
-                sum += Y;
+        for (int i = 1; i <= n; i++) {
+            for (int c = 0; c < 2; c++) { // c:
+                if (c == 0 && S.charAt(i-1) == 'J') continue;
+                if (c == 1 && S.charAt(i-1) == 'C') continue;
+                for (int d = 0; d < 2; d++) { // d:
+                    int cost = 0;
+                    if (i > 1){
+                        if (d == 0 && c == 1) cost += X;
+                        if (d == 1 && c == 0) cost += Y;
+                    }
+                    dp[i][c] = Math.min(dp[i][c], dp[i-1][d] + cost);
+                }
             }
         }
-        return sum;
+
+        print("" + Math.min(dp[n][0], dp[n][1]));
     }
 
     private static void print(String s) {
