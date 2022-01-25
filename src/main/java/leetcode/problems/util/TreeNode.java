@@ -40,6 +40,17 @@ public class TreeNode {
         }
     }
 
+//    public static TreeNode create(String s) {
+//        String[] nodes = s.substring(1,s.length()-1).split(",");
+//        for (String n: nodes) {
+//            TreeNode t = null;
+//            if (!"null".equals(n)) {
+//                t = new TreeNode(Integer.parseInt(n));
+//            }
+//        }
+//        TreeNode t = new TreeNode();
+//    }
+
     public static TreeNode insertIntoBST(TreeNode root, int val) {
         TreeNode newNode = new TreeNode(val);
         if (root == null) {
@@ -84,4 +95,5 @@ public class TreeNode {
         }
         return this;
     }
+
 }
