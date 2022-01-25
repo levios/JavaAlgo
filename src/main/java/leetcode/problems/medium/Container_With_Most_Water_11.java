@@ -1,9 +1,9 @@
-package leetcode.problems;
+package leetcode.problems.medium;
 
 /**
- * https://leetcode.com/problems/container-with-most-water/
+ * 11. Container With Most Water
+ * ttps://leetcode.com/problems/container-with-most-water/
  * each represents a point at coordinate (i, ai)#
- *
  */
 public class Container_With_Most_Water_11 {
 
