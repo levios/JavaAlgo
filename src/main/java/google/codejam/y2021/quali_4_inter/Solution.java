@@ -1,4 +1,4 @@
-package google.codejam.y2021.quali_4;
+package google.codejam.y2021.quali_4_inter;
 
 import java.io.*;
 import java.util.*;
