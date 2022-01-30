@@ -51,18 +51,6 @@ public class Algo {
 
     public static void main(String[] args) {
         //System.out.println(decryptMessage("ne1ds"));
-        List<List<Long>> x = new LinkedList<>();
-        List<Long> a= new LinkedList<>(), b= new LinkedList<>(), c = new LinkedList<>();
-        a.add(4L);
-        a.add(8L);
-        x.add(a);
-        a.add(15L);
-        a.add(30L);
-        x.add(a);
-        a.add(25L);
-        a.add(50L);
-        x.add(a);
-        System.out.println(nearlySimilarRectangles(x));
     }
 
 
@@ -107,39 +95,23 @@ public class Algo {
         return b == 0 ? a : gcd(b, a % b);
     }
 
-    static long nearlySimilarRectangles(List<List<Long>> sides) {
-        List<List<Long>> s1 = new LinkedList<>();
-        List<List<Long>> s2 = new LinkedList<>();
-        for (int i = 0; i < sides.size(); i++) {
-            List<Long> r1 = sides.get(i);
-            Long a = r1.get(0);
-            Long b = r1.get(1);
-            if (a < b) {
-                s1.add(r1);
-            } else {
-                s2.add(r1);
-            }
-        }
-        return x(s1) + x(s2);
-    }
-
-    static long x(List<List<Long>> sides) {
-        int res = 0;
-        for (int i = 0; i < sides.size() - 1; i++) {
-            List<Long> r1 = sides.get(i);
-            Long a = r1.get(0);
-            Long b = r1.get(1);
-            for (int j = i+1; j < sides.size(); j++) {
-                List<Long> r2 = sides.get(j);
-                Long c = r2.get(0);
-                Long d = r2.get(1);
-                if (a * d == b * c) {
-                    res++;
-                }
-            }
-        }
-        return res;
-    }
+//    public int findMaximumXOR(int[] nums) {
+//      int bits = -1;
+//      List<Integer> highest = new LinkedList<>();
+//      for (int n : nums) {
+//          if (Integer.highestOneBit(n) > bits) {
+//              highest.clear();
+//              highest.add(n);
+//              bits=Integer.highestOneBit(n);
+//          } else if (Integer.highestOneBit(n) == bits) {
+//              highest.add(n);
+//          }
+//      }
+//        for (int h : highest) {
+//            int i = Integer.highestOneBit(Integer.valueOf(h << 1));
+//
+//        }
+//    }
 
     int max = 0;
     public int largestComponentSize(int[] A) {
